@@ -4,13 +4,20 @@ A skill that teaches AI agents how to use [mobilewright](https://github.com/mobi
 
 ## Installation
 
-Copy the skill into your Claude Code skills directory:
+**Option 1** — download directly:
 
 ```bash
-cp -r skills/mobilewright ~/.claude/skills/mobilewright
+mkdir -p ~/.claude/skills/mobilewright
+curl -fsSL https://raw.githubusercontent.com/mobile-next/mobilewright-skill/main/skills/mobilewright/SKILL.md \
+  -o ~/.claude/skills/mobilewright/SKILL.md
 ```
 
-Or reference it directly in your project's `.claude/` directory.
+**Option 2** — clone and copy:
+
+```bash
+git clone https://github.com/mobile-next/mobilewright-skill.git
+cp -r mobilewright-skill/skills/mobilewright ~/.claude/skills/mobilewright
+```
 
 ## What It Does
 
