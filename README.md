@@ -1,6 +1,6 @@
 # mobilewright-skill
 
-A skill that teaches AI agents how to use [mobilewright](https://github.com/niceguydave/mobilewright) for mobile device automation, testing, and development verification.
+A skill that teaches AI agents how to use [mobilewright](https://github.com/mobile-next/mobilewright) for mobile device automation, testing, and development verification.
 
 ## Installation
 
