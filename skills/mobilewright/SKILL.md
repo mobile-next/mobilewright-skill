@@ -36,6 +36,18 @@ This creates `mobilewright.config.ts` and `example.test.ts`. Verify the environm
 npx mobilewright doctor
 ```
 
+### CLI Commands
+
+```bash
+npx mobilewright init                              # scaffold config + example test
+npx mobilewright doctor                            # verify environment setup
+npx mobilewright devices                           # list connected devices/simulators
+npx mobilewright test                              # run tests
+npx mobilewright screenshot                        # take a screenshot of a connected device
+npx mobilewright screenshot -o login.png           # save to specific file
+npx mobilewright screenshot -d <device-id>         # target a specific device
+```
+
 ### Configuration
 
 ```typescript
@@ -108,8 +120,10 @@ Run tests:
 
 ```bash
 npx mobilewright test
-npx mobilewright test login.test.ts          # specific file
-npx mobilewright test --grep "sign in"       # filter by name
+npx mobilewright test login.test.ts              # specific file
+npx mobilewright test --grep "sign in"           # run a single test by name
+npx mobilewright test --reporter list            # line-by-line output, good for CI/agents
+npx mobilewright test --reporter json            # machine-readable JSON output
 ```
 
 ### Available Fixtures
@@ -215,6 +229,7 @@ await screen.screenshot({ format: 'jpeg', quality: 80 })
 await screen.swipe('up')                             // scroll down
 await screen.swipe('down', { distance: 300, duration: 500 })
 await screen.pressButton('HOME')
+await screen.goBack()                                // press BACK (Android only, no-op on iOS)
 await screen.viewTree()                              // full view hierarchy as JSON
 ```
 
@@ -239,6 +254,31 @@ await locator.isEnabled()     // boolean
 await locator.isSelected()    // boolean
 await locator.isFocused()     // boolean
 await locator.isChecked()     // boolean
+```
+
+### Locator — Collection
+
+Work with multiple matching elements:
+
+```typescript
+await locator.count()         // number of matching elements
+await locator.all()           // array of Locator, one per match
+locator.first()               // first matching element
+locator.last()                // last matching element
+locator.nth(2)                // element at index (0-based, negative counts from end)
+```
+
+Example — tap the third item in a list:
+
+```typescript
+await screen.getByType('Cell').nth(2).tap();
+```
+
+Example — verify the number of search results:
+
+```typescript
+const count = await screen.getByType('Cell').count();
+expect(count).toBe(5);
 ```
 
 ### Locator — Chaining
@@ -275,9 +315,10 @@ await expect(locator).toHaveText('Welcome back!');
 await expect(locator).toHaveText(/welcome/i);
 await expect(locator).toContainText('back');
 await expect(locator).toHaveValue('user@example.com');
+await expect(locator).toBeHidden();
 await expect(locator).toBeChecked();
 await expect(locator).toBeSelected();
-await expect(locator).toHaveFocus();
+await expect(locator).toBeFocused();
 await expect(locator).toBeVisible({ timeout: 10_000 });
 ```
 
