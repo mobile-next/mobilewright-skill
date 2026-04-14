@@ -4,7 +4,13 @@ A skill that teaches AI agents how to use [mobilewright](https://github.com/mobi
 
 ## Installation
 
-**Option 1** — download directly:
+**Option 1** — using [skills](https://skills.sh/) CLI:
+
+```bash
+npx skills add mobile-next/mobilewright-skill
+```
+
+**Option 2** — download directly:
 
 ```bash
 mkdir -p ~/.claude/skills/mobilewright
@@ -12,7 +18,7 @@ curl -fsSL https://raw.githubusercontent.com/mobile-next/mobilewright-skill/main
   -o ~/.claude/skills/mobilewright/SKILL.md
 ```
 
-**Option 2** — clone and copy:
+**Option 3** — clone and copy:
 
 ```bash
 git clone https://github.com/mobile-next/mobilewright-skill.git

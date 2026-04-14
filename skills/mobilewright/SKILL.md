@@ -1,3 +1,8 @@
+---
+name: mobilewright
+description: Mobile device automation, testing, and UI verification for iOS and Android. Use before writing mobilewright tests, automation scripts, or verifying mobile UI implementations.
+---
+
 # Mobilewright Skill
 
 Mobile device automation, testing, and development verification using [mobilewright](https://github.com/mobile-next/mobilewright) — a Playwright-inspired framework for iOS and Android.
